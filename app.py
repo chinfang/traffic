@@ -32,7 +32,7 @@ df = df.explode(array_cols).reset_index(drop=True)
 content.config()
 
 # Set sidebar
-st.sidebar.header('🚸 台灣交通熱點地圖')
+st.sidebar.header('🚸 台灣交通事故熱點地圖')
 city = st.sidebar.selectbox('發生地點:', cityList, index=1)
 variable = st.sidebar.selectbox('因子類別:', variables, index=4)
 options = np.append('全部', df[variable].unique())

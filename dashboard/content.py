@@ -7,7 +7,7 @@ import leafmap
 def config():
     # Set streamlit
     st.set_page_config(
-        page_title='台灣交通熱點地圖',
+        page_title='台灣交通事故熱點地圖',
         page_icon='🔥',
         layout='wide')
     
