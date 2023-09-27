@@ -194,7 +194,7 @@ webencodings==0.5.1
 websocket-client==1.6.3
 whitebox==2.3.1
 whiteboxgui==2.3.0
-widgetsnbextension==3.6.6
+widgetsnbextension
 xarray==2023.8.0
 xyzservices==2023.7.0
 yarl==1.9.2
