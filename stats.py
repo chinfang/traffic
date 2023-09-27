@@ -6,6 +6,8 @@ variables = ['發生月份', '天候名稱', '光線名稱',\
              '車道劃分設施-分道設施-快車道或一般車道間名稱',\
              '事故類型及型態大類別名稱', '事故類型及型態子類別名稱', '肇因研判大類別名稱-主要', '肇因研判子類別名稱-主要',\
              '當事者事故發生時年齡']
+array_cols = ['當事者事故發生時年齡', '肇因研判大類別名稱-主要', '肇因研判子類別名稱-主要']
+
 dfs = pd.DataFrame()
 df_stats = pd.DataFrame()
 
@@ -18,7 +20,10 @@ for year in range(2018, 2024):
 # Value count for each category    
 for var in variables:
     # stats country
-    df_stat = dfs.groupby(['發生季度', var]).size().sort_values()
+    if var in array_cols:
+        df_stat = dfs.explode(var).reset_index(drop=True).groupby(['發生季度', var]).size().sort_values()
+    else:
+        df_stat = dfs.groupby(['發生季度', var]).size().sort_values()
     df_stat = df_stat.reset_index()
     df_stat.columns = ['發生季度', 'value', 'count']
     df_stat['發生縣市'] = '全台'
@@ -26,7 +31,10 @@ for var in variables:
     df_stats = pd.concat([df_stats, df_stat])
     
     # stats cities
-    df_stat = dfs.groupby(['發生季度', '發生縣市', var]).size().sort_values()
+    if var in array_cols:
+        df_stat = dfs.explode(var).reset_index(drop=True).groupby(['發生季度', '發生縣市', var]).size().sort_values()
+    else:
+        df_stat = dfs.groupby(['發生季度', '發生縣市', var]).size().sort_values()
     df_stat = df_stat.reset_index()
     df_stat.columns = ['發生季度', '發生縣市', 'value', 'count']
     df_stat['因子'] = var
