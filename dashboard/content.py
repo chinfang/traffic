@@ -19,6 +19,7 @@ def config():
                 </style>
                 """
     st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
+    
 def map(xmin, xmax, ymin, ymax, quarters, city, option, variable):
     array_cols = ['當事者事故發生時年齡', '肇因研判大類別名稱-主要', '肇因研判子類別名稱-主要']
     dfs = pd.DataFrame()
