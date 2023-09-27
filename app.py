@@ -53,7 +53,8 @@ with tab1:
                                         '2022Q3', '2022Q4', '2023Q1', '2023Q2', '2023Q3'], ['2022Q4'])
     dfs, lat, lon, zoom = content.map(xmin, xmax, ymin, ymax, quarters, city, option, variable)
     # Plot
-    basemap = xyz.Stadia.AlidadeSmoothDark
+    basemap = xyz.Stadia.AlidadeSmoothDark(api_key='d795eca2-ec26-4e08-88d1-4af4b98e63af')
+    basemap['url'] = basemap['url'] + '?api_key={api_key}'  # adding API key placeholder
     m = leafmap.Map(center=[lat, lon], zoom=zoom)
     m.add_basemap(basemap)
 
