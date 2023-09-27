@@ -25,7 +25,7 @@ ymax=26
 
 # Load data
 df = pd.read_parquet('./data/2022.parquet')
-df = df[(df['經度']>xmin) & (df['經度']<xmax) & (df['緯度']>ymin) & (df['緯度']<ymax)]#[cols]
+df = df[(df['經度']>xmin) & (df['經度']<xmax) & (df['緯度']>ymin) & (df['緯度']<ymax)]
 df = df.explode(array_cols).reset_index(drop=True)
 
 # Setup Streamlit
@@ -33,7 +33,6 @@ content.config()
 
 # Set sidebar
 st.sidebar.header('🚸 台灣交通熱點地圖')
-# cities = np.append('全台', cityList)
 city = st.sidebar.selectbox('發生地點:', cityList, index=1)
 variable = st.sidebar.selectbox('因子類別:', variables, index=4)
 options = np.append('全部', df[variable].unique())
